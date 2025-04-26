@@ -1,0 +1,31 @@
+.root {
+    -fx-background-color: #2E2E2E;
+}
+
+.label, .combo-box, .button {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.combo-box {
+    -fx-background-color: #4A4A4A;
+    -fx-border-color: #666;
+}
+
+.button {
+    -fx-background-color: #4A4A4A;
+    -fx-border-color: #666;
+    -fx-padding: 5 10;
+}
+
+.button:hover {
+    -fx-background-color: #5A5A5A;
+}
+
+.menu-bar {
+    -fx-background-color: #3C3C3C;
+}
+
+.menu-bar .label {
+    -fx-text-fill: white;
+}

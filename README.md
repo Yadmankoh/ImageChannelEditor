@@ -1,67 +1,198 @@
-# ICE
+# ImageChannelEditor
 
-A Java-based image analysis tool inspired by Stegsolve, designed for viewing and manipulating image channels (Red, Green, Blue, Alpha) and their bit planes. The program allows users to load images of any size, cycle through different display modes using arrow buttons, and save modified images.
+ImageChannelEditor — это мощный инструмент на Java, вдохновленный Stegsolve, для анализа и редактирования каналов изображений (Red, Green, Blue, Alpha) и их битов. Программа поддерживает загрузку изображений любого размера, переключение режимов отображения через современный интерфейс на JavaFX, а также функции перетаскивания, зума и извлечения данных. Она может запускаться с файлом через командную строку, что делает ее удобным приложением.
 
-## Features
-- Load images in JPG, PNG, or BMP formats.
-- Cycle through display modes using left (`←`) and right (`→`) arrow buttons:
-  - Full channels: Red, Green, Blue, Alpha.
-  - Bit planes (0–7) for each channel.
-  - Alpha channels 1–6 (corresponding to Alpha bits 0–5).
-- Save modified images in PNG format.
-- Menu with "About" information.
-- Supports images of any size with a scrollable view.
+---
 
-## Requirements
-- Java Development Kit (JDK) 8 or higher.
-- A Java-compatible IDE (e.g., IntelliJ IDEA) or command-line tools for compilation.
+## Возможности
+- Загрузка изображений в форматах JPG, PNG, BMP.
+- Переключение режимов через выпадающее меню:
+  - Полные каналы: Red, Green, Blue, Alpha.
+  - Битовые плоскости (0–7) для каждого канала.
+  - Альфа-каналы 1–6 (биты 0–5).
+- Сохранение изображений в формате PNG.
+- Открытие изображений через командную строку или перетаскивание.
+- Зум для детального анализа.
+- Извлечение данных из битовых планов для стеганографии.
+- Современный интерфейс с темной темой.
 
-## Installation
-1. Clone the repository:
+## Требования
+- Java Development Kit (JDK) 8 или выше.
+- JavaFX SDK (для JDK 11+).
+- Инструменты командной строки или IDE (например, IntelliJ IDEA).
+
+## Установка
+1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/your-username/ImageChannelEditor.git
+   git clone https://github.com/Yadmankoh/ImageChannelEditor.git
    ```
-2. Navigate to the project directory:
+2. Перейдите в директорию проекта:
    ```bash
    cd ImageChannelEditor
    ```
 
-## Compilation and Running
-1. Compile the Java source code:
+## Использование
+### Компиляция и запуск
+1. Скомпилируйте код:
    ```bash
-   javac src/ImageChannelEditor.java
+   javac --module-path <путь_к_javafx>/lib --add-modules javafx.controls src/ImageChannelEditor.java
    ```
-2. Run the program:
+2. Запустите программу:
    ```bash
-   java -cp src ImageChannelEditor
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -cp src ImageChannelEditor
    ```
-   Alternatively, if using an IDE:
-   - Import the project into your IDE.
-   - Set the JDK in the project settings.
-   - Run the `ImageChannelEditor` class.
 
-## Usage
-1. Launch the program.
-2. Use the menu `File -> Open Image` to load an image (JPG, PNG, or BMP).
-3. Use the `←` and `→` buttons at the bottom to cycle through display modes (e.g., Red Channel, Alpha Bit 0, Alpha Channel 1).
-4. The current mode is displayed between the buttons.
-5. Save the modified image using `File -> Save Image` (saved as PNG).
-6. View program information via `Help -> About`.
+### Создание JAR
+1. Скомпилируйте код:
+   ```bash
+   javac --module-path <путь_к_javafx>/lib --add-modules javafx.controls src/ImageChannelEditor.java
+   ```
+2. Создайте `MANIFEST.MF`:
+   ```
+   Manifest-Version: 1.0
+   Main-Class: ImageChannelEditor
 
-## Project Structure
+   ```
+3. Соберите JAR:
+   ```bash
+   jar cfm ImageChannelEditor.jar MANIFEST.MF -C src .
+   ```
+4. Запустите JAR:
+   ```bash
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar
+   ```
+
+### Открытие изображения через командную строку
+Запустите с файлом:
+```bash
+java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar path/to/image.png
+```
+
+### Ассоциация файлов (Windows)
+Чтобы открывать `.png`, `.jpg`, `.bmp` двойным кликом:
+1. Поместите `ImageChannelEditor.jar` и `run.bat` в папку (например, `C:\Users\Nightmare\ImageChannelEditor`).
+   - Содержимое `run.bat`:
+     ```bat
+     @echo off
+     java -jar "C:\Users\Nightmare\ImageChannelEditor\ImageChannelEditor.jar" %1
+     ```
+2. Запустите `associate.reg`:
+   - Содержимое `associate.reg`:
+     ```reg
+     Windows Registry Editor Version 5.00
+
+     [HKEY_CLASSES_ROOT\.png]
+     @="ImageChannelEditor.png"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.png]
+     @="PNG Image"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.png\shell\open\command]
+     @="\"C:\\Users\\Nightmare\\ImageChannelEditor\\run.bat\" \"%1\""
+
+     [HKEY_CLASSES_ROOT\.jpg]
+     @="ImageChannelEditor.jpg"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.jpg]
+     @="JPEG Image"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.jpg\shell\open\command]
+     @="\"C:\\Users\\Nightmare\\ImageChannelEditor\\run.bat\" \"%1\""
+
+     [HKEY_CLASSES_ROOT\.bmp]
+     @="ImageChannelEditor.bmp"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.bmp]
+     @="BMP Image"
+
+     [HKEY_CLASSES_ROOT\ImageChannelEditor.bmp\shell\open\command]
+     @="\"C:\\Users\\Nightmare\\ImageChannelEditor\\run.bat\" \"%1\""
+     ```
+3. Дважды щелкните `associate.reg`.
+4. Дважды щелкните на изображении для открытия.
+
+## Структура проекта
 ```
 ImageChannelEditor/
 ├── src/
-│   └── ImageChannelEditor.java
+│   ├── ImageChannelEditor.java
+│   └── styles.css
+├── .gitignore
+├── MANIFEST.MF
 ├── README.md
-└── .gitignore
+├── run.bat
+└── associate.reg
 ```
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Лицензия
+MIT License. См. [LICENSE](LICENSE).
 
-## Contributing
-Feel free to open issues or submit pull requests for improvements or bug fixes.
+## Вклад
+Присылайте issues или pull requests для улучшений или исправления ошибок.
 
-## Credits
-Developed by "_Dyamare", 2025.
+## Авторы
+Разработано при поддержке xAI Assistant, 2025.
+
+---
+
+## Русский
+
+### Описание
+ImageChannelEditor — Java-приложение для анализа и редактирования каналов изображений (Red, Green, Blue, Alpha) и их битов, вдохновленное Stegsolve. Поддерживает загрузку изображений любого размера, переключение режимов через выпадающее меню, зум, перетаскивание и извлечение данных.
+
+### Использование
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/Yadmankoh/ImageChannelEditor.git
+   ```
+2. Скомпилируйте и запустите:
+   ```bash
+   javac --module-path <путь_к_javafx>/lib --add-modules javafx.controls src/ImageChannelEditor.java
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -cp src ImageChannelEditor
+   ```
+3. Создайте JAR:
+   ```bash
+   jar cfm ImageChannelEditor.jar MANIFEST.MF -C src .
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar
+   ```
+4. Запустите с файлом:
+   ```bash
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar path/to/image.png
+   ```
+
+### Ассоциация файлов (Windows)
+1. Поместите `ImageChannelEditor.jar` и `run.bat` в папку.
+2. Запустите `associate.reg` для настройки `.png`, `.jpg`, `.bmp`.
+3. Дважды щелкните на изображении.
+
+---
+
+## Українська
+
+### Опис
+ImageChannelEditor — Java-додаток для аналізу та редагування каналів зображень (Red, Green, Blue, Alpha) та їх бітів, натхненний Stegsolve. Підтримує завантаження зображень будь-якого розміру, перемикання режимів через меню, зум, перетягування та витягування даних.
+
+### Використання
+1. Клонуйте репозиторій:
+   ```bash
+   git clone https://github.com/Yadmankoh/ImageChannelEditor.git
+   ```
+2. Скомпілюйте та запустіть:
+   ```bash
+   javac --module-path <путь_к_javafx>/lib --add-modules javafx.controls src/ImageChannelEditor.java
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -cp src ImageChannelEditor
+   ```
+3. Створіть JAR:
+   ```bash
+   jar cfm ImageChannelEditor.jar MANIFEST.MF -C src .
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar
+   ```
+4. Запустіть із файлом:
+   ```bash
+   java --module-path <путь_к_javafx>/lib --add-modules javafx.controls -jar ImageChannelEditor.jar path/to/image.png
+   ```
+
+### Асоціація файлів (Windows)
+1. Помістіть `ImageChannelEditor.jar` та `run.bat` у папку.
+2. Запустіть `associate.reg` для налаштування `.png`, `.jpg`, `.bmp`.
+3. Двічі клацніть на зображенні.
