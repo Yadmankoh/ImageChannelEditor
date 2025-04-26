@@ -127,7 +127,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 Submit issues or pull requests for improvements or bug fixes.
 
 ## Credits
-Developed with assistance from xAI Assistant, 2025.
+Developed by YADMANKOH, 2025.
 
 ---
 
