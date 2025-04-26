@@ -29,36 +29,7 @@ ImageChannelEditor is a Java-based tool inspired by Stegsolve for analyzing and 
    ```
 
 ## Usage
-### Compile and Run
-1. Compile the source code:
-   ```bash
-   javac src/ImageChannelEditor.java
-   ```
-2. Run the program:
-   ```bash
-   java -cp src ImageChannelEditor
-   ```
-
-### Build Executable JAR
-1. Compile the code:
-   ```bash
-   javac src/ImageChannelEditor.java
-   ```
-2. Create `MANIFEST.MF` in the project root:
-   ```
-   Manifest-Version: 1.0
-   Main-Class: ImageChannelEditor
-
-   ```
-3. Build the JAR:
-   ```bash
-   jar cfm ImageChannelEditor.jar MANIFEST.MF -C src .
-   ```
-4. Run the JAR:
-   ```bash
-   java -jar ImageChannelEditor.jar
-   ```
-
+### Open .jar file
 ### Open Image via Command Line
 Launch with an image file:
 ```bash
