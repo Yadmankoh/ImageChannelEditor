@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.png]
+@="ImageChannelEditor.png"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.png]
+@="PNG Image"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.png\shell\open\command]
+@="\"C:\\Program Files\\ImageChannelEditor\\run.bat\" \"%1\""
+
+[HKEY_CLASSES_ROOT\.jpg]
+@="ImageChannelEditor.jpg"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.jpg]
+@="JPEG Image"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.jpg\shell\open\command]
+@="\"C:\\Program Files\\ImageChannelEditor\\run.bat\" \"%1\""
+
+[HKEY_CLASSES_ROOT\.bmp]
+@="ImageChannelEditor.bmp"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.bmp]
+@="BMP Image"
+
+[HKEY_CLASSES_ROOT\ImageChannelEditor.bmp\shell\open\command]
+@="\"C:\\Program Files\\ImageChannelEditor\\run.bat\" \"%1\""
