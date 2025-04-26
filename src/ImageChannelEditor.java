@@ -216,7 +216,7 @@ public class ImageChannelEditor extends JFrame {
 
     private void showAboutDialog() {
         JOptionPane.showMessageDialog(this,
-                "Image Channel Editor\nVersion 1.0\nStegsolve-like channel and bit plane switcher\nCreated by _Dyamare Assistant\n2025",
+                "Image Channel Editor\nVersion 1.0\nStegsolve-like channel and bit plane switcher\nCreated by _Dyamare\n2025",
                 "About",
                 JOptionPane.INFORMATION_MESSAGE);
     }
